@@ -1,204 +1,396 @@
+
+:root {
+    
+    --primary-color: rgb(98, 0, 255);
+    --primary-color-rgb: 98, 0, 255;
+    --primary-color-dark: rgb(75, 0, 196);
+    --secondary-color: rgb(14, 14, 14);
+    --text-color: white;
+    --accent-color: gold;
+    --accent-shadow: goldenrod;
+    --bg-dark: rgba(26, 26, 26, 0.8);
+    --bg-trans: rgba(26, 26, 26, 0.5);
+    
+    
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    
+    
+    --shadow-sm: 0 0 1vw rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 0 2vw rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 0 3.5vw rgba(0, 0, 0, 0.7);
+    --glow-primary: 0 0 3.5vw rgba(var(--primary-color-rgb), 0.781);
+    
+    
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    
+    --font-main: 'Bebas Nue', sans-serif;
+    --font-secondary: 'Cali', sans-serif;
+    --font-size-xs: 0.8rem;
+    --font-size-sm: 1rem;
+    --font-size-md: 1.25rem;
+    --font-size-lg: 1.5rem;
+    --font-size-xl: 2rem;
+    --font-size-xxl: 2.5rem;
+}
+
+
 @font-face {
     font-family: "Bebas Nue";
     src: url("./fonts/BebasNeuePro-Regular.ttf") format("truetype");
+    font-display: swap; 
 }
 
 @font-face {
     font-family: "Bebas Nue";
     src: url("./fonts/BebasNeuePro-Thin.ttf") format("truetype");
-	font-weight: 100;
+    font-weight: 100;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Bebas Nue";
     src: url("./fonts/BebasNeuePro-Light.ttf") format("truetype");
-	font-weight: 200;
+    font-weight: 200;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Bebas Nue";
     src: url("./fonts/BebasNeuePro-Middle.ttf") format("truetype");
-	font-weight: 300;
+    font-weight: 300;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Bebas Nue";
     src: url("./fonts/BebasNeuePro-Italic.ttf") format("truetype");
-	font-style: italic;
+    font-style: italic;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Bebas Nue";
     src: url("./fonts/BebasNeuePro-Bold.ttf") format("truetype");
     font-weight: bold;
+    font-display: swap;
 }
 
 @font-face {
     font-family: "Cali";
     src: url("./fonts/Cali.otf") format("truetype");
+    font-display: swap;
 }
 
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 html {
-	font-family:Bebas Nue;
-	background:transparent;
-
+    font-family: var(--font-main);
+    background: transparent;
     -webkit-touch-callout: none;
-
-	-webkit-user-select: none;
-
-	-khtml-user-select: none;
-
-	-moz-user-select: none;
-
-	-ms-user-select: none;
-
-	user-select: none;
-
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-size: 16px;
+    height: 100%;
 }
-
 
 body {
-    display: none;
+    display: block; 
     background: url('./images/background.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    image-rendering: pixelated;
+    background-position: center;
+    image-rendering: auto; 
     overflow: hidden;
+    height: 100%;
+    color: var(--text-color);
+    opacity: 0; 
+    transition: opacity var(--transition-normal);
 }
 
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+#app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--space-xl);
+    position: relative;
+}
+
+
 .selection-Container {
-    margin: 13vw auto; 
+    display: none; 
+    margin: 10vh auto;
     width: 45vw;
-    height: 35vw;
-    filter: drop-shadow(0 0 3.5vw rgba(98, 0, 255, 0.781));
+    max-width: 750px;
+    height: auto;
+    filter: drop-shadow(0 0 3.5vw rgba(var(--primary-color-rgb), 0.781));
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .selection-Type {
-    position: absolute;
-    margin:2vw 10vw auto;
-    width: 25vw;
-    height: 30vw;
+    position: relative;
+    width: 100%;
+    padding: 8vh 4vw;
     background: url('./images/backgound-selection.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    filter: drop-shadow(0 0 3.5vw rgba(98, 0, 255, 0.781));
-    
+    background-position: center;
+    filter: drop-shadow(0 0 3.5vw rgba(var(--primary-color-rgb), 0.781));
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+.form-group {
+    margin-bottom: var(--space-lg);
+    width: 100%;
+}
+
+
 input {
-    position: absolute;
-    margin:15.5vw 5.2vw auto;
-    width: 14.5vw;
+    width: 100%;
     height: 3vw;
+    min-height: 50px;
+    max-height: 70px;
     border: none;
-    background: rgb(26, 26, 26, 0.8);
-    /* text */
+    border-radius: 4px;
+    background: var(--bg-dark);
     text-align: center;
-    font-size: 0.9vw;
-    color: white;
+    font-size: var(--font-size-md);
+    color: var(--text-color);
+    padding: var(--space-md);
+    transition: box-shadow var(--transition-fast);
 }
 
 input:focus {
     outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.5);
 }
 
-#selectionBtn-Create {
-    position: absolute;
-    margin:20vw 5vw auto;
-    width: 15vw;
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+.btn {
+    width: 100%;
     height: 3vw;
-    background-color:rgb(26, 26, 26, 0.5);
-    border:0.15vw solid rgb(98, 0, 255);
-    border-radius: 0.2vw;
-    filter:drop-shadow(0 0 1vw black);
-    /* text */
-    font-family:Bebas Nue;
+    min-height: 50px;
+    max-height: 70px;
+    border-radius: 4px;
+    font-family: var(--font-main);
     text-align: center;
     text-transform: uppercase;
-    line-height: 2.5vw;
-    font-size: 1.5vw;
+    font-size: var(--font-size-lg);
     font-weight: bold;
-    color: rgb(98, 0, 255);
-    /* animation */
-    transition: 0.3s;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
 }
 
-#selectionBtn-Create:hover {
-    background-color: rgb(98, 0, 255);
-    box-shadow: 0 0 3vw rgb(98, 0, 255);
+.btn i {
+    font-size: 0.9em;
+}
+
+.btn-primary {
+    background-color: var(--bg-trans);
+    border: 0.15vw solid var(--primary-color);
+    color: var(--primary-color);
+    filter: drop-shadow(var(--shadow-sm));
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-color);
+    box-shadow: 0 0 3vw var(--primary-color);
     color: white;
     transform: scale(1.05);
-    cursor: pointer;
 }
 
-#creation-Cost {
-    position: absolute;
-    margin:23.5vw 5vw auto;
-    width: 15vw;
-    height: 2vw;
-    background-color:rgb(26, 26, 26, 0.7);
-    /* text */
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+
+.cost-display {
+    width: 100%;
+    padding: var(--space-md);
+    background-color: var(--bg-dark);
+    border-radius: 4px;
     text-align: center;
     text-transform: capitalize;
-    line-height: 2vw;
-    font-size: 1vw;
-    color: white;
+    font-size: var(--font-size-md);
+    color: var(--text-color);
 }
 
 #cost,
-#currency
-{
-    color: gold;
-    text-shadow: 0 0 1.5vw goldenrod;
+#currency {
+    color: var(--accent-color);
+    text-shadow: 0 0 1.5vw var(--accent-shadow);
+    font-weight: bold;
 }
 
-/* Mafia Panel */
 
 .mafia-Panel {
-    margin: 10vw auto; 
-    width: 35vw;
-    height: 40vw;
+    display: none; 
+    margin: 5vh auto;
+    width: 80%;
+    max-width: 1000px;
+    aspect-ratio: 7/8;
     background: url('./images/background-panel.png');
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
-    filter: drop-shadow(0 0 3.5vw rgba(98, 0, 255, 0.781));
+    background-position: center;
+    filter: drop-shadow(var(--glow-primary));
+    border-radius: 8px;
+    position: relative;
+    padding: 2rem;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-#mafia-Name {
-    position: absolute;
-    margin:7vw 5vw auto;
-    width: 25vw;
-    background: linear-gradient(90deg, transparent, rgb(14, 14, 14), transparent);
-    /* text */
+.mafia-Container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mafia-Name {
+    padding: var(--space-md) var(--space-xl);
+    margin-top: 5vh;
+    background: linear-gradient(90deg, transparent, var(--secondary-color), transparent);
     text-align: center;
     text-transform: capitalize;
-    font-size: 2.5vw;
+    font-size: var(--font-size-xxl);
     font-weight: 700;
-    color: rgb(132, 0, 255);
-    text-shadow: 0 0 1.5vw rgb(132, 0, 255);
+    color: var(--primary-color);
+    text-shadow: 0 0 1.5vw var(--primary-color);
+    border-radius: 4px;
 }
 
-::-webkit-scrollbar-track,
-::-webkit-scrollbar-track {
-    background-color: none;
-    border: none;
+.gang-details {
+    margin-top: 5vh;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-::-webkit-scrollbar,
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: var(--space-md) var(--space-lg);
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+    border-radius: 4px;
+    box-shadow: var(--shadow-md);
+    transform: translateX(120%);
+    transition: transform var(--transition-normal);
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.notification.show {
+    transform: translateX(0);
+}
+
+.notification.error {
+    border-left: 4px solid #ff3b30;
+}
+
+.notification.success {
+    border-left: 4px solid #34c759;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+
 ::-webkit-scrollbar {
     width: 5px;
-    background-color: #25252500;
+    background-color: rgba(37, 37, 37, 0);
     border-radius: 2px;
 }
 
-::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    border: none;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+
+@media (max-width: 1200px) {
+    .selection-Container,
+    .mafia-Panel {
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+    
+    .selection-Type {
+        padding: 4vh 3vw;
+    }
+    
+    .mafia-Name {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 12px;
+    }
+}
 ::-webkit-scrollbar-thumb {
     background-color: #b7b4b9b2;
     border: 2px solid #8ee2c900;
